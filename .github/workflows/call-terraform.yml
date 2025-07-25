@@ -1,0 +1,16 @@
+name: Terraform Deploy via Reusable
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable-terraform.yml
+    with:
+      tf_working_dir: terraform
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
